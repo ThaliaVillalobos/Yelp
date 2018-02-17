@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="91H-RB-tFe">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G1114" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="91H-RB-tFe">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -124,6 +124,7 @@
                                             <outlet property="ratingImageView" destination="TOn-nV-YUL" id="KBZ-OC-bxW"/>
                                             <outlet property="reviewsCountLabel" destination="X61-Ma-JrU" id="5dq-Gh-jdi"/>
                                             <outlet property="thumbImageView" destination="u73-Ry-TFD" id="ChV-GI-m77"/>
+                                            <segue destination="9c5-Cy-KcB" kind="modal" id="4gf-8D-4QA"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -146,6 +147,33 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Fgb-4b-F1b" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2727.1999999999998" y="357.57121439280365"/>
+        </scene>
+        <!--Map View Controller-->
+        <scene sceneID="EUJ-Zc-Gw8">
+            <objects>
+                <viewController id="9c5-Cy-KcB" customClass="MapViewController" customModule="Yelp" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="R6m-Ny-qEv"/>
+                        <viewControllerLayoutGuide type="bottom" id="OPm-ey-GlB"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="eCH-rt-xzL">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="6Vf-N7-9rG">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="mapView" destination="6Vf-N7-9rG" id="kDc-Mh-zj3"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Kej-n7-Yrb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3476" y="357.57121439280365"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="3X9-P0-KLE">

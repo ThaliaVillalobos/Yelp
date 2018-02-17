@@ -85,5 +85,16 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
         return cell
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let cell = sender as! UITableViewCell
+        if let indexPath = tableView.indexPath(for: cell)
+        {
+            let business = businesses[indexPath.row]
+            let mapViewController = segue.destination as! MapViewController
+            mapViewController.business = business
+        }
+        
+    }
+    
     
 }
