@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Yelp/BusinessesViewController.swift"
-            timestampString = "540536988.665859"
+            timestampString = "540539550.609789"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "94"
-            endingLineNumber = "94"
+            startingLineNumber = "104"
+            endingLineNumber = "104"
             landmarkName = "prepare(for:sender:)"
             landmarkType = "7">
          </BreakpointContent>

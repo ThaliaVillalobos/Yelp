@@ -13,7 +13,7 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
     var businesses: [Business]!
-    var filteredData: [Business]!
+   // var filteredData: [Business]!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,7 +29,7 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
         Business.searchWithTerm(term: "Thai", completion: { (businesses: [Business]?, error: Error?) -> Void in
             
             self.businesses = businesses
-            self.filteredData = businesses
+            //self.filteredData = businesses
             self.tableView.reloadData()
             if let businesses = businesses {
                 for business in businesses {
@@ -61,8 +61,8 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if filteredData != nil {
-            return filteredData!.count
+        if businesses != nil {
+            return businesses!.count
         }else{
             return 0
         }
@@ -70,18 +70,28 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
     
     // This method updates filteredData based on the text in the Search Box
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        filteredData = searchText.isEmpty ? businesses : businesses.filter { (item: Business) -> Bool in
-            // If dataItem matches the searchText, return true to include it
-            return item.name?.range(of: searchText, options: .caseInsensitive, range: nil, locale: nil) != nil
+        Business.searchWithTerm(term: searchText, completion: { (businesses: [Business]?, error: Error?) -> Void in
+            
+            self.businesses = businesses
+            //self.filteredData = businesses
+            self.tableView.reloadData()
+            if let businesses = businesses {
+                for business in businesses {
+                    print(business.name!)
+                    print(business.address!)
+                }
+            }
+            
         }
-        
+        )
+
         tableView.reloadData()
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "BusinessCell", for: indexPath) as! BusinessCell
         
-        cell.business = filteredData[indexPath.row]
+        cell.business = businesses[indexPath.row]
         return cell
     }
     
