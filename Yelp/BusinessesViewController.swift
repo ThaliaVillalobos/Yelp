@@ -8,12 +8,12 @@
 
 import UIKit
 
-class BusinessesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
+class BusinessesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, UIScrollViewDelegate {
     
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
     var businesses: [Business]!
-   // var filteredData: [Business]!
+    var isMoreDataLoading = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -106,5 +106,33 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
         
     }
     
+    
+    func loadMoreData() {
+        // Creating the Request
+        Business.getMoreData(offset: businesses.count, completion: { (businesses: [Business]?, error: Error?) -> Void in
+            for business in businesses! {
+                self.businesses.append(business)
+            }
+            self.tableView.reloadData()
+            self.isMoreDataLoading = false
+            }
+        )
+    }
+    
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        // Handle scroll behavior here
+        if(!isMoreDataLoading) {
+            let scrollViewContentHeight = tableView.contentSize.height
+            let scrollOffsetThreshold = scrollViewContentHeight - tableView.bounds.size.height
+
+            if(scrollView.contentOffset.y > scrollOffsetThreshold && tableView.isDragging) {
+                isMoreDataLoading = true
+                
+                loadMoreData()
+           
+            }
+        }
+    }
     
 }
